@@ -1,0 +1,244 @@
+                                        GIT
+                                  =================
+                                                             
+# What is SCM/VCS/RCS. Why we need VCS.
+	VCS features.
+	
+--> Refer 'ProGit' for official documentation.
+
+
+#
+GIT Installation (Ubuntu):
+$ sudo apt-get update
+$ sudo apt-get install git
+
+Verify Installation:
+	which git
+	git version
+
+GIT Uninstallation:
+$ sudo apt-get remove git
+
+#
+Git Architecture
+- end-to-end git work-flow
+
+#
+Creating remote repository in github
+===============
+1. create an account in github.com
+	URL: https://github.com
+
+2. login github.com with your credentials. 	
+	click on "new" --> give a name "flipkart-ecomerce" --> "create reopository" 
+
+3. copy the repo URL from Github:
+	https://github.com/nageshvkn/flipkart-ecomerce.git
+
+4. Clone the source code from remote repository using 'git clone' command
+	git clone https://github.com/nageshvkn/flipkart-ecomerce.git
+
+5. cd "flipkart-ecomerce" and observe ".git" folder. ".git" is called as "Local Reposiotory".
+
+6. Create some sample code and submit the code to remote repo.
+	--> touch Login.java
+	--> git add Login.java
+	--> git commit Login.java -m "login module code"
+	--> git push  --> [refer below topic to generate token as password]
+
+	--> git log Login.java
+
+#
+Settng up token/password to access GitHub
+========================================
+1. go to https://github.com
+
+2. Generate token from github
+click on user-profile icon (top right) .. click on 'settings' .. click on 'Developer settings' .. click on 'Personal access tokens' .. click on 'Generate new token' .. give a name under 'Note' (example:class) .. select 'No expiration' from 'Expiration' drop-down box .. click on 'repo' check box under 'Select scopes' .. and finally click on 'Generate token' button.
+
+3. Store the token in your machine using below command
+$ git remote set-url origin https://nageshvkn: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@github.com/nageshvkn/wiculty33.git
+
+Note: in the above command
+- 'nageshvkn' is your GitHub user-name.
+- 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 IS your token generated from GitHub.
+- github.com/nageshvkn/wiculty29.git is your repository path. don't give 'https'
+
+
+#
+Staging Index/Stage
+
+- Skip staging
+	$ git commit -am "submit all pending changes"
+
+Note: If you want to skip the staging, you need to commit all pending changes.
+      For new file, you have to go through the 'stage' process.
+
+
+# Show all the files that are modified as part of a commit (with content)
+git show <Commit Id>
+git show b85a6e123
+
+#
+- Git Commit structure
+	SHA value / commit ID
+	User & email
+	Date & time stamp
+	Commit message
+
+
+#
+Setting up mandatory configurations:
+=============================================
+$ git config --global user.name "Nageswara Rao P"
+$ git config --global user.email "nageshvkn@gmail.com"
+
+Check the configurations using below command
+$ git config --list
+
+Git stores all configurations in below file
+"$USER_HOME/.gitconfig"
+
+
+# Understand Git Jargon.
+	- Remote Repository
+	- Working Directory
+	- Local Repository
+	- Stage/"Staging Index"
+	- SHA
+
+# History
+	$ git log Login.java
+	$ git log
+
+# GIT Commands
+1.  
+# See the content change of a file which is in 'source' area
+$ git diff Login.java
+
+# See the content change of a file which is in 'stage' area
+$ git diff --staged Login.java
+
+# See the content change of a file after the commit
+$ git show 123abc456
+
+2. Deleting a file
+
+        A.) git rm OMS.java
+	    git commit OMS.java -m "comment"
+	    git push
+	    
+ 
+3. Renaming a file/folder
+	A.) git mv Login.java Login1.java
+	    git commit -m "rename Login"
+	    git push		
+Note:
+Git will carry the history of old file to new file. To check complete history..
+	$ git log --follow Login1.java
+
+
+# Undoing the changes:
+undo/revert local changes from source area
+	$ git restore LoginWeb.java
+
+Unstage the changes from STAGE area
+	$ git restore --staged LoginWeb.java
+
+
+# BRANCHING
+	A. What is a branch?
+	B. Why and When we create a branch?
+	C. Branching Strategies
+
+
+# List all active branches in local repository
+	$ git branch
+	
+# Creating a new branch
+	$ git branch dev_1.2.3
+
+# Push new branch to remote repository
+	$ git push origin dev_1.2.3
+		
+# Switching from one branch to another
+	$ git checkout dev_1.2.3
+
+# Creating and switching to a newly created branch
+	$ git checkout -b dev_1.2.4
+
+# How do you clone a remote repository with a particular branch as default
+	$ git clone -b dev_1.2.4 https://github.com/nageshvkn/flipkart899.git
+
+# List all remote branches
+	$ git branch -r
+	
+# Deleting a branch
+        $ git branch -d dev_1.2.3
+        $ git push -d origin dev_1.2.3       
+
+
+MERGING:
+=============
+
+# List all the branches
+	$ git branch
+
+# Create a new branch
+	$ git branch dev_1.2.3
+
+
+# Take a file which is common in master and dev_1.2.3 branch.
+  ex: Login.java
+
+# Make sure Login.java has below content in master and dev_1.2.3 branch
+	Login.java
+		line#5 --> int a = 10;
+	
+# To create a conflict situation, we need to modify same line in two branches with different content.
+
+	ex: Login.java (master)
+			line#5 --> int a =100;
+		
+		Login.java (dev_1.2.3)
+			line#5 --> int a = 200;
+
+
+# Now merge the code from dev_1.2.3 to master branch
+  Before merge, make sure that you are on target branch i.e master (source branch: dev_1.2.3)
+	$ git checkout master
+
+# You have master code now, since currently checkout branch is master. Now bring/merge the changes from dev_1.2.3 to master by running below command. 
+Git merge command merges the changes from dev_1.2.3 to master.
+
+	$ git merge dev_1.2.3
+
+# Run git status command to list conflict file
+
+#
+  Resolve the conflict and commit the merge
+
+# Run git push command to move the merge to Remote.
+
+
+# What is Conflict:
+If two users modify the same file in source and target branches and if the same line has different content, git can't decide which user's code it has to take. we call this situation as conflict.
+
+# How do you resolve the conflict: 
+- Open the conflict file--> remove conflict markers--> select the right content 
+  based on the discussion with developers
+- git add
+- git commit (after compilation and some z sanity testing)
+- git push
+
+Note:
+Use below command to find the owner of conflict code. How do you find the user who modified/added conflicted code?
+	$ git blame Login.java
+          
+#	
+git remote
+	PULL
+	FETCH
+	
+	PUSH
+	CLONE

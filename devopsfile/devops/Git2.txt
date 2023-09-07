@@ -1,0 +1,20 @@
+1)Git tag
+ A tag is like a branch that doesn't change. Unlike branches, tags, after being created, have no further history of commits.
+Tags are usually used to mark stable releases
+git tag
+[]git tag
+[]git tag  <tagname>
+[]git push origin <tagname>
+------------------
+2)Git cherrypic
+The command git cherry-pick is typically used to introduce particular commits from one branch within a repository onto a different branch.
+Git allows you to integrate selected, individual commits from any branch into your current HEAD branch.
+The HEAD points out the last commit in the current checkout branch. It is like a pointer to any reference. The HEAD can be understood as the "current branch." When you switch branches with 'checkout,' the HEAD is transferred to the new branch.
+[]git cherry-pick commitid
+-------------------------------
+3)Git rebase
+The primary reason for rebasing is to maintain a linear project history.
+--------------------------------
+4)Git fork
+------------------------------
+5)git amend

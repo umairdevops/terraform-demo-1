@@ -1,0 +1,110 @@
+Git
+Install and configure Git:
+[] sudo su
+[] yum -y install git
+[] git --version
+---------------------------
+Explanation of each command with Example:
+1)git configConfiguring username and email in git
+We must configure username and email in git for tracking purpose
+[]git config –list
+[] git config –global user.name “pavani”
+[]git config –global user.emailpavani@gmail.com
+-----------------------------
+2)git init
+git init command is used to initialize the git repository
+[]mkdir pavani
+[]cd pavani
+[]git init
+[]ls -la
+-------------------
+3)git add
+Create file and add that file to staging area and check the status
+[] vi pavani1
+[]git status
+[]git add . (or)[]git add pavani1
+---------------------
+4)git status
+Git status is to check the status of files (added or committed)
+[]git status
+-----------------------
+5)git commit
+Commit the changes to local repo.
+[] git commit -m “commitmsg”
+-------------------------
+6)Git log:
+[] git log
+----------------------
+7)git show
+[]git show
+----------------------
+8).gitignore
+[]vi .gitignore
+.java*
+:wq!
+[]git add .gitignore
+[] git commit -m “ignoring .java files”
+[]touch.java3 .java4
+[]git status
+-------------------------
+9)Branching
+[] git branch
+Create a new branch
+[] git branch <name of the branch>
+to switch branch
+[] git checkout <in which branch you wanna go>
+[]vi c1
+[]git add .
+[]git commit -m "commitmsg"
+You cannot merge branches of diff repos
+To merge branches
+To merge from one branch data to another branch and you have to be in destination branch
+[] git merge <name of the branch>
+----------------------------
+13)git stash
+To stash an item
+[]vi pavani1
+[]git add .
+[] git stash
+Stash will be working before commit.
+To see the stashed items list
+[] git stash list
+To apply stashed items.
+Get back to your previous commit.
+[] git stash apply stash@{number}
+------------------------
+14)git reset
+[]git reset ./filename
+-----------------
+15.git revert
+[] git revert commitid
+-----------------------
+16)git remote
+This command lets you to create, view and delete connections to other repos
+[] git remote -v
+[]git remote add origin url
+-----------------------------
+17)git clone
+It is used to clone the remote repos
+[]git clone url
+---------------------------
+18)git fetch
+git fetch url
+-----------------------------
+19)git pull
+It is used to download and merge those changes into your local repo.
+Pull=fetch+merge
+It []git pull origin master
+----------------------
+20)git push
+It is used to publish your local changes to your remote repo
+[]git push origin master
+---------------------------
+21)git tag
+[]git tag
+[]git tag  <tagname>
+[]git push origin <tagname>
+------------------
+
+git cherri-pick
+git amned
